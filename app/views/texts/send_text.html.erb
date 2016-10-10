@@ -1,0 +1,18 @@
+<%= form_tag("/texts/send_message", method: 'post', remote: true ) do %>
+  <%= select_tag :sender_id, options_from_collection_for_select(User.all, "id", "name") %>
+  <%= select_tag :recepient_id, options_from_collection_for_select(User.all, "id", "name") %><br>
+  <br>
+  <%= text_area_tag :content %><br>
+  <%= submit_tag "Send Message" %>
+<% end %>
+<br>
+<br>
+<div id="message_box">
+  <div id="message-out">
+    <% @texts.each do |text| %>
+      <strong><%= User.find(text.sender_id).name %>: </strong>
+      <p><%= text.content.capitalize %></p>
+      <p class="small">Sent to: <%= User.find(text.recepient_id).name %></p>
+    <% end %>
+  </div>
+</div>
