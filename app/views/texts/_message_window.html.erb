@@ -1,7 +1,7 @@
 <div id="message-out">
-  <% @texts.each do |text| %>
-    <strong><%= User.find(text.sender_id).name %>: </strong>
-    <p><%= text.content.capitalize %></p>
-    <p class="small">Sent to: <%= User.find(text.recepient_id).name %></p>
-  <% end %>
+   <% @texts.limit(5).each do |text| %>
+      <strong><%= User.find(text.sender_id).name %>: </strong>
+      <p><%= text.content.capitalize %></p>
+      <p class="small">Sent to: <%= User.find(text.recepient_id).name %> <%= time_ago_in_words(text.created_at) %>  ago</p>
+   <% end %>
 </div>
