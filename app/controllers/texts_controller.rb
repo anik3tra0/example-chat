@@ -11,6 +11,6 @@ class TextsController < ApplicationController
    end
 
    def send_text
-      @texts = Text.all
+      @texts = Text.all.order('created_at DESC')
    end
 end
